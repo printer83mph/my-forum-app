@@ -6,13 +6,11 @@ const Votes = () => {
 
   return (
     <div className="flex flex-col items-center text-sm">
-      <button type="button" onClick={() => setScore((s) => s + 1)}>
+      <button type="button" onClick={() => setScore(s => s + 1)}>
         <HiChevronUp title="Upvote" />
       </button>
-      <div className="font-bold text-gray-700">
-        {score}
-      </div>
-      <button type="button" onClick={() => setScore((s) => s - 1)}>
+      <div className="font-bold text-gray-700">{score}</div>
+      <button type="button" onClick={() => setScore(s => s - 1)}>
         <HiChevronDown title="Downvote" />
       </button>
     </div>

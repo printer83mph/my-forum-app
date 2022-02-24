@@ -1,44 +1,33 @@
 module.exports = {
-  "env": {
-      "browser": true,
-      "es2021": true,
+  env: {
+    browser: true,
+    es2021: true,
   },
-  "extends": [
-      "airbnb",
-      "airbnb-typescript",
-      "airbnb/hooks",
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-      "ecmaFeatures": {
-          "jsx": true
+  extends: ["airbnb", "airbnb-typescript", "airbnb/hooks", "prettier"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    sourceType: "module",
+  },
+  plugins: ["react", "@typescript-eslint"],
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      parserOptions: {
+        project: "tsconfig.json",
       },
-      "sourceType": "module"
-  },
-  "plugins": [
-      "react",
-      "@typescript-eslint"
+    },
   ],
-  "overrides": [
+  rules: {
+    // react shenanigans
+    "react/function-component-definition": [
+      2,
       {
-          files: ['*.ts', '*.tsx'],
-          parserOptions: {
-              project: 'tsconfig.json'
-          }
-      }
-  ],
-  "rules": {
-      // basic style
-      "semi": ["error", "never"],
-      "@typescript-eslint/semi": 0,
-
-      // react shenanigans
-      "react/function-component-definition": [
-          2,
-          {
-              "namedComponents": "arrow-function"
-          }
-      ],
-      "react/jsx-props-no-spreading": 0,
+        namedComponents: "arrow-function",
+      },
+    ],
+    "react/jsx-props-no-spreading": 0,
   },
 };

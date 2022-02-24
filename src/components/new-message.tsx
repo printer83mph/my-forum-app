@@ -14,7 +14,7 @@ const NewMessage = ({ onSubmit, clear }: NewMessageProps) => {
 
   return (
     <form
-      onSubmit={(evt) => {
+      onSubmit={evt => {
         evt.preventDefault()
         onSubmit({ name, message })
         if (clear) {
@@ -27,19 +27,21 @@ const NewMessage = ({ onSubmit, clear }: NewMessageProps) => {
       <input
         type="text"
         value={name}
-        onChange={(evt) => setName(evt.target.value)}
+        onChange={evt => setName(evt.target.value)}
         placeholder="Your Name Here"
         className="rounded py-2 px-3 border-gray-300 border-[1px] mb-3"
       />
       <input
         value={message}
-        onChange={(evt) => setMessage(evt.target.value)}
+        onChange={evt => setMessage(evt.target.value)}
         placeholder="Your Message Here"
         className="rounded py-2 px-3 border-gray-300 border-[1px] resize-none mb-3 whitespace-wrap"
       />
       <button
         type="submit"
-        className={`rounded px-6 py-2 ${fieldsInvalid ? 'bg-blue-400' : 'bg-blue-700'} text-white ml-auto tracking-wide`}
+        className={`rounded px-6 py-2 ${
+          fieldsInvalid ? 'bg-blue-400' : 'bg-blue-700'
+        } text-white ml-auto tracking-wide`}
         disabled={fieldsInvalid}
       >
         Submit

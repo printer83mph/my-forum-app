@@ -23,46 +23,44 @@ const Thread = ({ name, message, depth }: ThreadProps) => {
         </div>
         <Votes />
       </div>
-      {depth < 2
-        ? (
-          <>
-            {replies.length ? (
-              <ul className="border-l-gray-300 border-l-2 mb-2 pl-3 flex flex-col gap-3 py-1">
-                {replies.map((reply) => (
-                  <Thread {...reply} key={reply.id} depth={depth + 1} />
-                )) }
-              </ul>
-            ) : null}
-            <button
-              type="button"
-              onClick={() => setReplyOpen((v) => !v)}
-              className="mr-auto text-gray-400 text-sm flex gap-1 items-center tracking-wide"
-            >
-              {replyOpen ? (
-                <>
-                  <HiX />
-                  Cancel
-                </>
-              ) : (
-                <>
-                  <HiReply />
-                  Reply
-                </>
-              )}
-            </button>
-            {replyOpen && (
+      {depth < 2 ? (
+        <>
+          {replies.length ? (
+            <ul className="border-l-gray-300 border-l-2 mb-2 pl-3 flex flex-col gap-3 py-1">
+              {replies.map(reply => (
+                <Thread {...reply} key={reply.id} depth={depth + 1} />
+              ))}
+            </ul>
+          ) : null}
+          <button
+            type="button"
+            onClick={() => setReplyOpen(v => !v)}
+            className="mr-auto text-gray-400 text-sm flex gap-1 items-center tracking-wide"
+          >
+            {replyOpen ? (
+              <>
+                <HiX />
+                Cancel
+              </>
+            ) : (
+              <>
+                <HiReply />
+                Reply
+              </>
+            )}
+          </button>
+          {replyOpen && (
             <div className="mt-2">
               <NewMessage
-                onSubmit={(msg) => {
+                onSubmit={msg => {
                   setReplyOpen(false)
-                  setReplies((r) => [...r, { id: uuidv4(), ...msg }])
+                  setReplies(r => [...r, { id: uuidv4(), ...msg }])
                 }}
               />
             </div>
-            )}
-          </>
-        )
-        : null}
+          )}
+        </>
+      ) : null}
     </li>
   )
 }
